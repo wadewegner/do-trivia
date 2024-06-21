@@ -20,7 +20,7 @@ $ npm install -g do-trivia
 $ do-trivia COMMAND
 running command...
 $ do-trivia (--version)
-do-trivia/0.0.1 darwin-arm64 node-v20.15.0
+do-trivia/0.0.2 darwin-arm64 node-v20.15.0
 $ do-trivia --help [COMMAND]
 USAGE
   $ do-trivia COMMAND
@@ -66,7 +66,7 @@ EXAMPLES
   hello friend from oclif! (./src/commands/hello/index.ts)
 ```
 
-_See code: [src/commands/hello/index.ts](https://github.com/WadeWegner/digitalocean-trivia/blob/v0.0.1/src/commands/hello/index.ts)_
+_See code: [src/commands/hello/index.ts](https://github.com/WadeWegner/digitalocean-trivia/blob/v0.0.2/src/commands/hello/index.ts)_
 
 ## `do-trivia hello world`
 
@@ -84,7 +84,7 @@ EXAMPLES
   hello world! (./src/commands/hello/world.ts)
 ```
 
-_See code: [src/commands/hello/world.ts](https://github.com/WadeWegner/digitalocean-trivia/blob/v0.0.1/src/commands/hello/world.ts)_
+_See code: [src/commands/hello/world.ts](https://github.com/WadeWegner/digitalocean-trivia/blob/v0.0.2/src/commands/hello/world.ts)_
 
 ## `do-trivia help [COMMAND]`
 
@@ -118,7 +118,7 @@ DESCRIPTION
   Play the DigitalOcean Trivia Game
 ```
 
-_See code: [src/commands/play.ts](https://github.com/WadeWegner/digitalocean-trivia/blob/v0.0.1/src/commands/play.ts)_
+_See code: [src/commands/play.ts](https://github.com/WadeWegner/digitalocean-trivia/blob/v0.0.2/src/commands/play.ts)_
 
 ## `do-trivia plugins`
 

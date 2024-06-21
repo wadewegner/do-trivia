@@ -1,7 +1,7 @@
 {
   "name": "do-trivia",
   "description": "A Digital Ocean trivia game for the CLI!",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Wade Wegner",
   "bin": {
     "do-trivia": "./bin/run.js"
