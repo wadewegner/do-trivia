@@ -1,7 +1,6 @@
 import {Command} from '@oclif/core'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
-import figlet from 'figlet'
 
 const questions = [
   {
@@ -71,12 +70,12 @@ export default class Play extends Command {
 
   async run(): Promise<void> {
     let totalScore = 0
+    let correctAnswers = 0
+    let wrongAnswers = 0
     const startTime = Date.now()
 
-    console.log(chalk.blue(figlet.textSync('DigitalOcean Trivia', {horizontalLayout: 'full'})))
-    console.log(
-      chalk.cyan('Welcome to the DigitalOcean Trivia Game! Test your knowledge and learn about DigitalOcean.\n'),
-    )
+    console.log(chalk.blue('Welcome to the DigitalOcean Trivia Game!'))
+    console.log(chalk.cyan('Test your knowledge about DigitalOcean.\n'))
 
     // Randomize questions
     const shuffledQuestions = this.shuffleArray([...questions])
@@ -103,9 +102,11 @@ export default class Play extends Command {
       if (isCorrect) {
         const points = Math.max(10 - Math.floor(answerTime), 1)
         totalScore += points
+        correctAnswers++
         console.log(chalk.green(`Correct! You earned ${points} points.`))
       } else {
         totalScore -= 5
+        wrongAnswers++
         console.log(chalk.red(`Wrong! The correct answer was: ${shuffledOptions[correctIndex]}. You lost 5 points.`))
       }
 
@@ -113,23 +114,27 @@ export default class Play extends Command {
     }
 
     const totalTime = ((Date.now() - startTime) / 1000).toFixed(2)
-    console.log(chalk.magenta(`Game Over! Your final score is ${totalScore}. Total time: ${totalTime} seconds.`))
+    console.log(chalk.magenta(`\nGame Over! Your final score is ${totalScore}. Total time: ${totalTime} seconds.`))
 
-    // Generate shareable ASCII art
-    const shareableArt = this.generateShareableArt(totalScore, totalTime)
-    console.log("\nHere's your shareable game result:")
-    console.log(shareableArt)
-    console.log(chalk.cyan('\nCopy the above art and paste it on social media with #DigitalOceanTrivia'))
+    const shareableResult = this.generateShareableResult(totalScore, totalTime, correctAnswers, wrongAnswers)
+    console.log("\nHere's your shareable game result:\n")
+    console.log(chalk.yellow(shareableResult))
+
+    console.log(chalk.cyan('\nCopy the above text and paste it on social media!'))
   }
 
-  generateShareableArt(score: number, time: string): string {
-    const artText = `DO Trivia\nScore: ${score}\nTime: ${time}s`
-    const art = figlet.textSync(artText, {
-      font: 'Small',
-      horizontalLayout: 'default',
-      verticalLayout: 'default',
-    })
-    return `\`\`\`\n${art}\n#DigitalOceanTrivia\n\`\`\``
+  generateShareableResult(score: number, time: string, correct: number, wrong: number): string {
+    return `I just played DO Trivia!
+  Score: ${score} pts
+  Time: ${time} seconds
+  Correct: ${correct}
+  Wrong: ${wrong}
+  
+  Can you beat my score?
+  
+  Play now: npm i -g do-trivia && do-trivia
+  
+  #DOTrivia`
   }
 
   shuffleArray<T>(array: T[]): T[] {
