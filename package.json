@@ -1,0 +1,81 @@
+{
+  "name": "do-trivia",
+  "description": "A Digital Ocean trivia game for the CLI!",
+  "version": "0.0.1",
+  "author": "Wade Wegner",
+  "bin": {
+    "do-trivia": "./bin/run.js"
+  },
+  "bugs": "https://github.com/WadeWegner/digitalocean-trivia/issues",
+  "dependencies": {
+    "@oclif/core": "^4",
+    "@oclif/plugin-help": "^6",
+    "@oclif/plugin-plugins": "^5",
+    "chalk": "^5.3.0",
+    "figlet": "^1.7.0",
+    "inquirer": "^9.2.23"
+  },
+  "devDependencies": {
+    "@oclif/prettier-config": "^0.2.1",
+    "@oclif/test": "^4",
+    "@types/chai": "^4",
+    "@types/figlet": "^1.5.8",
+    "@types/inquirer": "^9.0.7",
+    "@types/mocha": "^10",
+    "@types/node": "^18",
+    "chai": "^4",
+    "eslint": "^8",
+    "eslint-config-oclif": "^5",
+    "eslint-config-oclif-typescript": "^3",
+    "eslint-config-prettier": "^9",
+    "mocha": "^10",
+    "oclif": "^4",
+    "shx": "^0.3.3",
+    "ts-node": "^10",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "/bin",
+    "/dist",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/WadeWegner/digitalocean-trivia",
+  "keywords": [
+    "digitalocean",
+    "trivia",
+    "cli",
+    "game"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "type": "module",
+  "oclif": {
+    "bin": "do-trivia",
+    "dirname": "do-trivia",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "hello": {
+        "description": "Say hello to the world and others"
+      }
+    }
+  },
+  "repository": "WadeWegner/digitalocean-trivia",
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "npm run lint",
+    "prepack": "oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
+  "types": "dist/index.d.ts"
+}
